@@ -1,0 +1,68 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://datainventory.doi.gov/schema/doi-dcat-us-distribution.json",
+    "title": "DOI Distribution",
+    "description": "DOI Distribution",
+    "type": "object",
+    "properties": {
+        "title": {
+            "description": "A human-understandable name of the distribution (e.g., “Digital Data for titleOfDataset”).",
+            "type": "string"
+        },
+        "accessURL": {
+            "description": "‘accessURL’ is URL that delivers an end user to a landing page, from which data can be queried (from a larger online database), or a link to the data selected (e.g., from a data repository).",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "downloadURL": {
+            "description": "‘downloadURL’  is a link that delivers a user directly to the data of interest (e.g., a link to an individual .csv, .shp, or .zip file). ",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "mediaType": {
+            "description": "The machine-readable file format of the distribution's endpoint. Required if the data asset is a file available for public download. Must describe the exact file available at downloadURL. Media Types (iana.org) Only required for public data.",
+            "type": "string"
+        },
+        "description": {
+            "description": "Human-understandable description of the type of distribution available to the user (e.g., “Landing page for access to the data.”). Only required for public data.",
+            "type": "string"
+        },
+        "describedBy": {
+            "description": "URL to the machine-readable data dictionary for the dataset found at the downloadURL or accessURL of the Data Distribution. A data dictionary describes the content and structure of the data (fields, column headings, domain or range of possible attributes for those fields, definitions, and, ideally, URIs for each potential value). Documentation OTHER THAN a formal data dictionary should be referenced in the references/Related Documents field. Note: This attribute is part of the Data Distribution object, the majority of which is contained in the Required table above. This element must be paired with Data Dictionary Type value.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "describedByType": {
+            "description": "The machine-readable media format of the distribution's describedBy URL. Note: This attribute is part of the Data Distribution object, the majority of which is contained in the Required table above. Usage note: The attribute must be paired with the Data Dictionary attribute. If the data dictionary is machine-readable, it should be assigned a media type from the link in Appendix 8 (e.g., application/schema+json). If the data dictionary is not machine-readable (i.e., only human readable), it should be an HTML page of media type text/html.",
+            "type": "string"
+        },
+        "conformsTo": {
+            "description": "Identifier of an established standard to which the described dataset conforms.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "@type": {
+            "description": "IRI for the JSON-LD data type.",
+            "enum": [
+              "dcat:Distribution"
+            ]
+        }
+    },
+    "required": ["title", "description"],
+    "oneOf": [
+        {
+            "required": ["accessURL"]
+        },
+        {
+            "required": ["downloadURL", "mediaType"]
+        }
+    ],
+    "dependentRequired": {
+        "describedBy": ["describedByType"],
+        "describedByType": ["describedBy"]
+    }
+}
