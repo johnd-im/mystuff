@@ -1,0 +1,353 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://datainventory.doi.gov/schema/doi-dcat-us-dataset.json#",
+    "title": "DOI Dataset",
+    "description": "DOI Dataset",
+    "type": "object",
+    "properties": {
+        "@type": {
+            "description": "IRI for the JSON-LD data type.",
+            "enum": [
+              "dcat:Dataset"
+            ]
+        },
+        "title": {
+            "description": "Human-readable name of the asset. Written in plain language and include sufficient detail to facilitate search and discovery.",
+            "type": "string"
+        },
+        "description": {
+            "description": "Human-readable description (e.g., abstract) of the content or purpose of the dataset with sufficient detail to assist the user in evaluating its relevance to their information need.",
+            "type": "string"
+        },
+        "keyword": {
+            "description": "Keywords that can help users discover the dataset; include terms that would be used by technical and non-technical users. Users are encouraged to use controlled vocabularies from which to select terms.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "modified": {
+            "description": "Most recent date on which the dataset was changed, updated, or modified. Follows ISO 8601 Repeating Duration.",
+            "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^(R\\d*\\/)?P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^(R\\d*\\/)?([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\4([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\18[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?(\\/)P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+                }
+              ]
+        },
+        "publisher": {
+            "$ref": "doi-dcat-us-organization.json"
+        },
+        "contactPoint": {
+            "$ref": "doi-dcat-us-vcard.json"
+        },
+        "accessLevel": {
+            "description": "The degree to which the dataset is publicly accessible.",
+            "type": "string",
+            "enum": ["public", "non-public"]
+        },
+        "bureauCode": {
+            "description": "The bureau’s OMB issued (OMB Circular A-11) department and bureau code.",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "010:00",
+                    "010:76",
+                    "010:77",
+                    "010:04",
+                    "010:06",
+                    "010:10",
+                    "010:22",
+                    "010:78",
+                    "010:85",
+                    "010:95",
+                    "010:84",
+                    "010:90",
+                    "010:24",
+                    "010:08",
+                    "010:88",
+                    "010:86",
+                    "010:90",
+                    "010:18",
+                    "010:12"
+                    ]
+            }
+        },
+        "license": {
+            "description": "The license or non-license (e.g., Public Domain) status under which the asset has been published.",
+            "enum": [
+                    "http://www.usa.gov/publicdomain/label/1.0/",
+                    "https://creativecommons.org/publicdomain/zero/1.0/",
+                    "https://creativecommons.org/licenses/by/4.0/",
+                    "https://creativecommons.org/licenses/by-sa/4.0/",
+                    "https://creativecommons.org/licenses/by-nd/4.0",
+                    "https://creativecommons.org/licenses/by-nc/4.0",
+                    "https://creativecommons.org/licenses/by-nc-sa/4.0",
+                    "https://creativecommons.org/licenses/by-nc-nd/4.0",
+                    "https://datainventory.doi.gov/common/vocab/license#other-license",
+                    "https://datainventory.doi.gov/common/vocab/license#nara-cui"
+                    ]
+        },
+        "rights": {
+            "description": "Information regarding access issues or restrictions that are based upon privacy, security, or other policies. This should serve as an explanation for the accessLevel when it is other than 'Public,' including any instructions for how to request access to a restricted public asset, or justification for why a non-public asset is designated as such. It can also be used to further explain licensing restrictions per the license specified in the `License` field. Only required if Access Level is Non-public.",
+            "type": "string"
+        },
+        "usageNotes": {
+            "description": "Constraints, legal prerequisites, limitations, or advisories that assure the protection of privacy or intellectual property, AND/OR that denote limits of applicability of data or their fitness for use for specific purposes once access to the data is granted.",
+            "type": "string"
+        },
+        "liability": {
+            "description": "The statement of liability assumed by the distributor of the data.",
+            "type": "string"
+        },
+        "theme": {
+            "description": "Main thematic category of the dataset. Currently used exclusively as an indicator of whether data have a geospatial context and should be submitted to GeoPlatform. Required for public geospatial assets.",
+            "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "geospatial"
+                                ]
+                        }
+        },
+        "distribution": {
+            "description": "An array of distribution objects",
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "doi-dcat-us-distribution.json"
+                    },
+                    {
+                        "$ref": "doi-dcat-us-originalMetadata.json"
+                    }
+                  ]
+            }
+        },
+        "identifier": {
+          "description": "A unique and persistent identifier for the dataset or API ideally taking the form of a URI that will always resolve to the data asset (e.g., a Digital Object Identifier). The identifier should be maintained by the bureau within an agency's catalog or infrastructure, or within a recognized system charged with generating and managing identifiers, such as DataCite.",
+          "type": "string",
+          "format": "uri", 
+          "pattern": "^https?://"
+        },
+        "spatial": {
+            "description": "The range of spatial applicability of a dataset. Spatial applicability should be specified as a simple geometry of one of these forms:  (1) a “bounding box” where the coordinates are ordered: minimum longitude (x-min), minimum latitude (y-min), maximum longitude (x-max), maximum latitude (y-max) or (2) point (single Long/Lat (x,y) pair.",
+            "type": "array",
+            "oneOf": [
+                {
+                  "minItems": 4,
+                  "prefixItems": [
+                        { "type": "number", "maximum": 180, "minimum": -180, "description": "Minimum longitude (x-min)" },
+                        { "type": "number", "maximum": 90, "minimum": -90, "description": "Minimum latitude (y-min)" },
+                        { "type": "number", "maximum": 180, "minimum": -180, "description": "Maximum longitude (x-max)" },
+                        { "type": "number", "maximum": 90, "minimum": -90, "description": "Maximum latitude (y-max)" }
+                  ],
+                  "items": false
+                },
+                {
+                  "minItems": 2,
+                  "prefixItems": [
+                    { "type": "number", "maximum": 180, "minimum": -180, "description": "Longitude" },
+                    { "type": "number", "maximum": 90, "minimum": -90, "description": "Latitude" }
+                  ],
+                  "items": false
+                }
+              ]
+        },
+        "temporal": {
+            "description": "The range of temporal applicability of a dataset (a start date and actual or potential end date of the data). Follows ISO 8601 Repeating Duration",
+            "type": "string",
+            "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?(\\/)([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^(R\\d*\\/)?([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\4([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\18[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?(\\/)P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^(R\\d*\\/)?P(?:\\d+(?:\\.\\d+)?Y)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?W)?(?:\\d+(?:\\.\\d+)?D)?(?:T(?:\\d+(?:\\.\\d+)?H)?(?:\\d+(?:\\.\\d+)?M)?(?:\\d+(?:\\.\\d+)?S)?)?\\/([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\4([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\18[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                }
+              ]
+        },
+        "accrualPeriodicity": {
+            "description": "The frequency with which a dataset is published. Used when new data are appended to an existing dataset at specified intervals. Follows ISO 8601 Repeating Duration",
+            "type": "string",
+            "enum": [
+                "R/P4Y", 
+                "R/P4Y", 
+                "R/P2Y", 
+                "R/P1Y", 
+                "R/P6M", 
+                "R/P3M", 
+                "R/P2M", 
+                "R/P1M", 
+                "R/P2W", 
+                "R/P1W",
+                "R/P1D", 
+                "R/P1H", 
+                "R/P1S", 
+                "irregular" 
+                ]
+        },
+        "issued": {
+            "description": "The first date of release of the dataset. If the data have not been versioned, this date may be the only date upon which the data have been revised. Follows ISO 8601 Date",
+            "type": "string"
+        },
+        "language": {
+            "description": "The language of the dataset. Follows ISO 639-2 Language Code List",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "primaryITInvestmentUII": {
+            "description": "Links a data asset to an IT Unique Investment Identifier (UII). (formatted: 000-00000000). Required for internal use.",
+            "type": "string",
+            "pattern": "^[0-9]{3}-[0-9]{8}$"
+        },
+        "relation": {
+            "description": "Any related and publicly available documents such as technical information about the data asset, developer documentation or code, glossaries, etc.",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "format": "uri", 
+                "pattern": "^https?://"
+            }
+        },
+        "systemOfRecords": {
+            "description": "If the asset is designated as a System of Records under the Privacy Act of 1974, provide the URL to the System of Records Notice (SORN) for the asset.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "programCode": {
+            "description": "The OMB-assigned code of the bureau's primary program(s) under which the dataset was authorized or created.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "landingPage": {
+            "description": "The human-friendly landing page of the data asset that users can be directed to for all resources associated with the dataset. Not intended to be used to point to the agency's homepage. Not intended to duplicate the URL used for direct access to the data (i.e., the data access or download URL).",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "conformsTo": {
+            "description": "Identifier of an established standard to which the dataset conforms.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "creator": {
+            "description": "The entity/entities primarily responsible for producing the dataset. Can be named individuals, program, unit, group organizational names. Supports citable data. DCAT-AP and DCAT-2 Element.",
+            "type": "array",
+            "items": {
+                "$ref": "doi-dcat-us-agent.json"
+            }
+        },
+        "isPartOf": {
+            "description": "The resource being described is an independently available component of a larger asset.",
+            "type": "string"
+        },
+        "qualifiedRelation": {
+            "description": "Used to link to another Dataset where the nature of the relationship is known but does not match one of the this Application Profile’s  (or DCAT-US-SCHEMA] terms.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": { 
+                "hadRole": {
+                    "type": "string",
+                    "enum": [
+                        "https://datainventory.doi.gov/common/hadrole#hasPart",
+                        "https://datainventory.doi.gov/common/hadrole#hasFormat",
+                        "https://datainventory.doi.gov/common/hadrole#isFormatOf",
+                        "https://datainventory.doi.gov/common/hadrole#hasVersion",
+                        "https://datainventory.doi.gov/common/hadrole#isVersionOf",
+                        "https://datainventory.doi.gov/common/hadrole#requires",
+                        "https://datainventory.doi.gov/common/hadrole#isRequiredBy",
+                        "https://datainventory.doi.gov/common/hadrole#isReferencedBy",
+                        "https://datainventory.doi.gov/common/hadrole#replaces",
+                        "https://datainventory.doi.gov/common/hadrole#isReplacedBy"
+                    ]
+                }, 
+                "relation": {
+                    "type": "string",
+                    "format": "uri", 
+                    "pattern": "^https?://"
+                }
+               } 
+            }
+        },
+        "describedBy": {
+            "description": "URL to the machine-readable data dictionary for the dataset. A data dictionary describes the content and structure of the data (fields, column headings, domain or range of possible attributes for those fields, definitions, and, ideally, URIs for each potential value). Documentation OTHER THAN a formal data dictionary should be referenced in the references/Related Documents field.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "describedByType": {
+            "description": "The machine-readable media format of the dataset's describedBy URL.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "title", 
+        "description", 
+        "keyword", 
+        "modified", 
+        "contactPoint", 
+        "accessLevel", 
+        "bureauCode",
+        "license",
+        "usageNotes",
+        "liability",
+        "distribution",
+        "publisher"
+    ],
+    "dependentSchemas": {
+        "spatial": {
+            "anyOf": [
+                {
+                    "properties": {
+                        "accessLevel": { "const": "public" }
+                    },
+                    "required": ["theme"]
+                },
+                {
+                    "properties": {
+                        "accessLevel": { "const": "non-public" }
+                    }
+                }
+            ]
+        }
+    },
+    "anyOf": [
+        {
+            "properties": {
+                "accessLevel": { "const": "non-public" }
+            },
+            "required": ["rights"]
+        },
+        {
+            "properties": {
+                "accessLevel": { "const": "public" }
+            }
+        }
+    ],
+    "dependentRequired": {
+        "describedBy": ["describedByType"],
+        "describedByType": ["describedBy"]
+    }
+}
