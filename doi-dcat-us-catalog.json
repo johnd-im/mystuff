@@ -1,0 +1,50 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://datainventory.doi.gov/schema/doi-dcat-us-catalog.json#",
+    "title": "DOI Dataset Catalog",
+    "description": "DOI Dataset Catalog",
+    "type": "object",
+    "properties": {
+        "conformsTo": {
+            "description": "URI that identifies the version of the Project Open Data schema being used.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "dataset": {
+            "description": "A container for the array of Dataset objects.",
+            "type": "array",
+            "items": {
+              "$ref": "doi-dcat-us-dataset.json",
+              "minItems": 1,
+              "uniqueItems": true
+            }
+        },
+        "@context": {
+            "description": "URL or JSON object for the JSON-LD Context that defines the schema used.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "@id": {
+            "description": "IRI for the JSON-LD Node Identifier of the Catalog. This should be the URL of the data.json file itself.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "@type": {
+            "description": "IRI for the JSON-LD data type. This should be dcat:Catalog for the Catalog.",
+            "type": "string"
+        },
+        "describedBy": {
+            "description": "URL for the JSON Schema file that defines the schema used.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        }
+    },
+    "required": [
+        "conformsTo",
+        "dataset"
+    ]
+}
