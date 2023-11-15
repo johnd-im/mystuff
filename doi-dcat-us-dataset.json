@@ -86,6 +86,7 @@
             "description": "The license or non-license (e.g., Public Domain) status under which the asset has been published.",
             "enum": [
                     "http://www.usa.gov/publicdomain/label/1.0/",
+                    "https://www.usa.gov/publicdomain/label/1.0/",
                     "https://creativecommons.org/publicdomain/zero/1.0/",
                     "https://creativecommons.org/licenses/by/4.0/",
                     "https://creativecommons.org/licenses/by-sa/4.0/",
