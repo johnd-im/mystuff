@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/johnd-im/mystuff/main/doi-dcat-us-vcard.json",
+    "title": "DOI Contact Point",
+    "description": "DOI Contact Point",
+    "type": "object",
+    "properties": {
+        "@type": {
+            "description": "IRI for the JSON-LD data type.",
+            "enum": [
+              "vcard:Contact"
+            ]
+        },
+        "fn": {
+            "description": "The plain text name of an entity who can answer questions about the data asset or its representation in EDI. Convention: Bureaus are encouraged to consider use of persistent group names rather than named individuals to reduce the need for updating contact metadata when individuals depart the bureau.",
+            "type": "string",
+            "minLength": 1
+        },
+        "hasEmail": {
+            "description": "A valid email address for the contact. Bureaus are encouraged to consider the use of persistent and shared inboxes to distribute inquiries and to reduce the need for updating the metadata when individuals depart the bureau.",
+            "type": "string",
+            "pattern": "^mailto:[\\w\\_\\~\\!\\$\\&\\'\\(\\)\\*\\+\\,\\;\\=\\:.-]+@[\\w.-]+\\.[\\w.-]+?$"
+        }
+    },
+    "required": [
+        "fn", "hasEmail"
+    ]
+}
