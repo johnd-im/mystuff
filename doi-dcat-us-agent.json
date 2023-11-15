@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/johnd-im/mystuff/main/doi-dcat-us-agent.json#",
+    "title": "DOI Agent",
+    "description": "DOI Agent",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The plain text name of the agent resource (person or organization)."
+        },
+        "@type": {
+            "type": "string",
+            "description": "URI for the JSON-LD data type.",
+            "enum": [
+                "foaf:Person",
+                "org:Organization"
+            ]
+        },
+        "@id": {
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "subOrganizationOf": {
+            "$ref": "doi-dcat-us-organization.json"
+        }
+    },
+    "required": ["name"]
+}
