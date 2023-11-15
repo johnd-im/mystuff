@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/johnd-im/mystuff/main/doi-dcat-us-organization.json#",
+    "title": "DOI Organization",
+    "description": "DOI Organization",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The plain text name of the entity that is assuming ownership of and responsibility for the publication of the data asset.",
+            "type": "string"
+        },
+        "subOrganizationOf": {
+            "$ref": "#"
+        },
+        "@type": {
+            "description": "IRI for the JSON-LD data type.",
+            "enum": [
+              "org:Organization"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}
