@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/johnd-im/mystuff/blob/main/doi-dcat-us-distribution.json#",
+    "$id": "https://raw.githubusercontent.com/johnd-im/mystuff/main/doi-dcat-us-distribution.json#",
     "title": "DOI Distribution",
     "description": "DOI Distribution",
     "type": "object",
