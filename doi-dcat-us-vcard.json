@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/johnd-im/mystuff/main/doi-dcat-us-vcard.json",
+    "$id": "https://raw.githubusercontent.com/johnd-im/mystuff/main/doi-dcat-us-vcard.json#",
     "title": "DOI Contact Point",
     "description": "DOI Contact Point",
     "type": "object",
