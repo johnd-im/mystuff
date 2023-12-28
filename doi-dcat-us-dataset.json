@@ -86,7 +86,6 @@
             "description": "The license or non-license (e.g., Public Domain) status under which the asset has been published.",
             "enum": [
                     "http://www.usa.gov/publicdomain/label/1.0/",
-                    "https://www.usa.gov/publicdomain/label/1.0/",
                     "https://creativecommons.org/publicdomain/zero/1.0/",
                     "https://creativecommons.org/licenses/by/4.0/",
                     "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -142,27 +141,8 @@
         },
         "spatial": {
             "description": "The range of spatial applicability of a dataset. Spatial applicability should be specified as a simple geometry of one of these forms:  (1) a “bounding box” where the coordinates are ordered: minimum longitude (x-min), minimum latitude (y-min), maximum longitude (x-max), maximum latitude (y-max) or (2) point (single Long/Lat (x,y) pair.",
-            "type": "array",
-            "oneOf": [
-                {
-                  "minItems": 4,
-                  "prefixItems": [
-                        { "type": "number", "maximum": 180, "minimum": -180, "description": "Minimum longitude (x-min)" },
-                        { "type": "number", "maximum": 90, "minimum": -90, "description": "Minimum latitude (y-min)" },
-                        { "type": "number", "maximum": 180, "minimum": -180, "description": "Maximum longitude (x-max)" },
-                        { "type": "number", "maximum": 90, "minimum": -90, "description": "Maximum latitude (y-max)" }
-                  ],
-                  "items": false
-                },
-                {
-                  "minItems": 2,
-                  "prefixItems": [
-                    { "type": "number", "maximum": 180, "minimum": -180, "description": "Longitude" },
-                    { "type": "number", "maximum": 90, "minimum": -90, "description": "Latitude" }
-                  ],
-                  "items": false
-                }
-              ]
+            "type": "string",
+            "pattern": "^(\\s*-?\\d+(\\.\\d+)?)(\\s*,\\s*-?\\d+(\\.\\d+)?)*$"
         },
         "temporal": {
             "description": "The range of temporal applicability of a dataset (a start date and actual or potential end date of the data). Follows ISO 8601 Repeating Duration",
