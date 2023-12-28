@@ -1,0 +1,43 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://datainventory.doi.gov/schema/doi-dcat-us-originalMetadata.json",
+    "title": "DOI Original Metadata",
+    "description": "The original full metadata for the dataset. Required for public geospatial assets.",
+    "type": "object",
+    "properties": {
+        "title": {
+            "description": "Declaration that the associated distribution is the original full metadata for the dataset.",
+            "const": "Original Metadata"
+        },
+        "downloadURL": {
+            "description": "The URL to the public-facing, downloadable XML or JSON file of the original CSDGM, ISO, or JSON metadata. GeoPlatform will link to this downloadable file as part of the asset’s entry in the catalog.",
+            "type": "string",
+            "format": "uri", 
+            "pattern": "^https?://"
+        },
+        "description": {
+            "description": "Declaration that the associated distribution is the original full metadata for the dataset.",
+            "const": "The original full metadata describing the data."
+        },
+        "mediaType": {
+            "description": "The machine-readable file format of the metadata's downloadURL (e.g., “text/xml”, “application/json”).",
+            "type": "string"
+        },
+        "conformsTo": {
+            "description": "URI of the metadata schema applied to the original metadata record (e.g., ISO 19115-x, CSDGM, DCAT)",
+            "enum": [
+                "http://www.isotc211.org/2005/gmi",
+                "http://www.isotc211.org/2005/gmd",
+                "http://www.fgdc.gov/schemas/metadata",
+                "https://datainventory.doi.gov/common/schema/doi-dcat-us"
+            ]
+        },
+        "@type": {
+            "description": "IRI for the JSON-LD data type.",
+            "enum": [
+              "dcat:Distribution"
+            ]
+        }
+    },
+    "required": ["title", "downloadURL", "description", "mediaType", "conformsTo"]
+}
